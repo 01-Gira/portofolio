@@ -9,6 +9,6 @@ router.get('/:userId', skillController.getSkillsByUserId);
 // Rute dengan autentikasi
 router.post('/', authenticateJWT, skillController.createSkill);
 router.put('/:id', authenticateJWT, skillController.updateSkill);
-// router.delete('/:id', authenticateJWT, skillController.deleteWorkExperience);
+router.delete('/:id', authenticateJWT, skillController.deleteSkill);
 
 module.exports = router;

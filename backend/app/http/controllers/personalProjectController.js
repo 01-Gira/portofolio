@@ -1,4 +1,4 @@
-const { PersonalProject, Skill } = require('../../models');
+const { PersonalProject, PersonalProjectSkill } = require('../../models');
 
 // Get user by ID
 exports.getPersonalProjectsByUserId = async (req, res) => {
@@ -26,7 +26,21 @@ exports.getPersonalProjectsByUserId = async (req, res) => {
 // Create a new personal project
 exports.createPersonalProject = async (req, res) => {
   try {
-    const personalProject = await PersonalProject.create(req.body);
+    const { name, description, skills } = req.body;
+
+    const personalProject = await PersonalProject.create({ name, description });
+    skills.map(skillId => console.log(skillId.skillId));
+    // console.log(skills);
+    if (skills && skills.length > 0) {
+      // `skills` adalah array yang berisi ID skill
+      const skillsToAdd = skills.map(value => ({
+        personalProjectId: personalProject.id,
+        skillId: value.skillId
+      }));
+
+      await PersonalProjectSkill.bulkCreate(skillsToAdd);
+    }
+
     res.status(201).json(personalProject);
   } catch (error) {
     console.error(error);

@@ -5,11 +5,11 @@ const personalProjectController = require('../app/http/controllers/personalProje
 const authenticateJWT = require('../app/http/middleware/authenticateJWT');
 
 // Rute tanpa autentikasi (contoh: GET semua proyek)
-router.get('/', personalProjectController.getAllProjects);
+router.get('/:userId', personalProjectController.getPersonalProjectsByUserId);
 
 // Rute dengan autentikasi
-router.post('/', authenticateJWT, personalProjectController.createProject);
-router.put('/:id', authenticateJWT, personalProjectController.updateProject);
-router.delete('/:id', authenticateJWT, personalProjectController.deleteProject);
+router.post('/', authenticateJWT, personalProjectController.createPersonalProject);
+router.put('/:id', authenticateJWT, personalProjectController.updatePersonalProject);
+router.delete('/:id', authenticateJWT, personalProjectController.deletePersonalProject);
 
 module.exports = router;

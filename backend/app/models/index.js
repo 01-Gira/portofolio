@@ -2,6 +2,7 @@ const User = require('./User');
 const Description = require('./Description');
 const WorkExperience = require('./WorkExperience');
 const PersonalProject = require('./PersonalProject');
+const PersonalProjectSkill = require('./PersonalProjectSkill');
 const Skill = require('./Skill');
 const WorkExperienceProject = require('./WorkExperienceProject');
 const sequelize = require('../../config/database');
@@ -37,4 +38,4 @@ Skill.belongsToMany(WorkExperienceProject, { through: 'work_experience_project_s
 //     console.error('Unable to create tables:', error);
 //   });
 
-module.exports = { User, Description, WorkExperience, PersonalProject, Skill, WorkExperienceProject };
+module.exports = { User, Description, WorkExperience, PersonalProject, PersonalProjectSkill, Skill, WorkExperienceProject, };
